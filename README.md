@@ -9,5 +9,6 @@
 | `-- init.sql
 |-- simulation
 | `-- operations.py
-|-- Dockerfile 
+|-- Dockerfile
+
 ```
