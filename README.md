@@ -3,10 +3,11 @@
 ```
 .
 |-- app
-| |-- Dockerfile 
 | |-- app.py 
 | `-- requirements.txt 
 |-- db 
-| `-- init.sql 
-
+| `-- init.sql
+|-- simulation
+| `-- operations.py
+|-- Dockerfile 
 ```
