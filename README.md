@@ -1,6 +1,6 @@
 # data_migration_exercise
 
-# tree
+```
 .
 |-- app
 | |-- Dockerfile 
@@ -8,3 +8,5 @@
 | `-- requirements.txt 
 |-- db 
 | `-- init.sql 
+
+```
