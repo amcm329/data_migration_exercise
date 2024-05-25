@@ -1,2 +1,9 @@
 # data_migration_exercise
-Data migration solution. 
+
+.
+|-- app
+| |-- Dockerfile 
+| |-- app.py 
+| `-- requirements.txt 
+|-- db 
+| `-- init.sql 
