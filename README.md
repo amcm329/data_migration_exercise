@@ -1,5 +1,6 @@
 # data_migration_exercise
 
+# tree
 .
 |-- app
 | |-- Dockerfile 
