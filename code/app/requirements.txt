@@ -2,7 +2,7 @@
 hvac == 2.2.0
 
 #Library needed for the avro backup task. 
-avro == 1.11.1
+pandavro == 1.8.0
 
 #Library needed to create the API REST services. 
 Flask == 3.0.3
