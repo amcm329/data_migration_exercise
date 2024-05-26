@@ -1,7 +1,7 @@
 services:
 
   app:
-    build: ./app
+    build: .
     links:
       - database
     ports:
