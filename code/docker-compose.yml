@@ -1,0 +1,23 @@
+services:
+
+  app:
+    build: ./app
+    links:
+      - database
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+
+  database:
+    image: mysql:5.7
+    ports:
+      - "8000:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=globant
+      - MYSQL_USER=aaron
+      - MYSQL_PASSWORD=secret    
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data:/var/lib/mysql
