@@ -51,18 +51,21 @@ Regarding the considerations mentioned for the project:
 
 ## STORAGE
 * In the container, I included the source files in the container so the experience can be more real from the user side. By executing the code simulation_interactions.py, the user will be able to carry out the mentioned activities (insert, restore, backup).
-* During the creation of the container, I considered the directories/home/backups and /home/sources which correspond to their respective activities.
+* During the creation of the container, I considered the directories /home/backups and /home/sources which correspond to their respective activities.
 
 ## LOGS
-* I used Python's library logger to carry out this exercise 
+* I used Python's library logger to carry out this exercise, especially for the insertions section. 
 
-* I created a file docker-compose.yml so I could launch these two services (MySQL and Flask).
+## DOCKERFILE 
+* Besides it, I created a file docker-compose.yml so I could launch these two services (MySQL and Flask).
 
-<br>
+## SECURITY
+* I am keen on security by obscurity, which means that each one of the functionalities does exactly what it's needed, even the script simulation_interactions.py contains this essence as it represents only the necessary actions that a user or a client-side script would carry out, for instance, I prepare some data to be json-friendly (see insert_table); initially, that section doesn't correspond to the server since it only works on the assumption that the data comes in a reliable format.
+* I added many considerations in the  
 
-Talking about security topics, I followed these statements: 
+## SECURITY
 
-* Security by obscurity - each one of the functionalities does exactly what it's needed, even the script simulation_interactions.py contains this essence as it represents only the necessary actions that a user would carry out. 
+
 
 <br>
 
