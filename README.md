@@ -49,8 +49,13 @@ In order to execute the code by using docker, you should utilize the following c
 
 Regarding the considerations mentioned for the project:
 
+## STORAGE
 * In the container, I included the source files in the container so the experience can be more real from the user side. By executing the code simulation_interactions.py, the user will be able to carry out the mentioned activities (insert, restore, backup).
-* During the creation of the container, I created the directories /home/logs, /home/backups and /home/sources which correspond to their respective activities.
+* During the creation of the container, I considered the directories/home/backups and /home/sources which correspond to their respective activities.
+
+## LOGS
+* I used Python's library logger to carry out this exercise 
+
 * I created a file docker-compose.yml so I could launch these two services (MySQL and Flask).
 
 <br>
