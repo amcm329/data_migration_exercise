@@ -1,17 +1,20 @@
 #Library suggested for handling the passwords and security issues in general. 
 hvac == 2.2.0
 
-#Library needed for the avro backup task. 
-pandavro == 1.8.0
-
-#Library needed to create the API REST services. 
+#Library used to create the API REST services. 
 Flask == 3.0.3
+
+#Library used for the insertion task.
+numpy = 1.26.4
 
 #Library needed to carry out the insertions in a more optimal way. 
 pandas == 2.2.2 
 
+#Library needed for the avro backup task. 
+pandavro == 1.8.0
+
 #Library needed to create the payloads for both the simulation and the server.
 requests == 2.32.2 
 
-#Library needed to connect the API REST with the database.
+#Library employed to connect the API REST with the database.
 mysql-connector-python == 8.4.0
