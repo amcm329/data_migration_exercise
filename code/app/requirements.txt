@@ -17,7 +17,7 @@ pandavro == 1.8.0
 requests == 2.32.2 
 
 #Library used to store logs. 
-logging == 0.4.9.6 
+#logging == 0.4.9.6 
 
 #Library employed to connect the API REST with the database.
 mysql-connector-python == 8.4.0
