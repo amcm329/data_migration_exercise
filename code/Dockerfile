@@ -8,6 +8,8 @@ RUN mkdir /home/backups
 
 RUN mkdir /home/sources
 
+RUN mkdir /home/logs
+
 # **** Adding the three csv files to the final destination in the container. *****s
 
 #Left is your host (the path where the docker is) and right is the container's path.
