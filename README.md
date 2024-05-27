@@ -42,6 +42,11 @@ I briefly explain each one of these elements:
 
 <br>
 
+In order to execute the code by using docker, you should utilize the following command: 
+**docker-compose up -d --build**
+
+<br>
+
 Regarding the considerations mentioned for the project:
 
 * In the container, I included the source files in the container so the experience can be more real from the user side. By executing the code simulation_interactions.py, the user will be able to carry out the mentioned activities (insert, restore, backup).
