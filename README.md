@@ -67,6 +67,7 @@ It's the same example as in the insertions, I delegated this task to the user si
 ## NEXT STEPS 
 
 There are many things to consider to harden this project, I mention the following: 
+* Modularize app.py following the encapsulation principles.
 * Using https certificate for better security.
 * Put primary and foreign key restrictions in the tables.
 * Sanitize inputs in order to avoid SQL injection attacks.
