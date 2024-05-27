@@ -16,5 +16,8 @@ pandavro == 1.8.0
 #Library needed to create the payloads for both the simulation and the server.
 requests == 2.32.2 
 
+#Library used to store logs. 
+logging == 0.4.9.6 
+
 #Library employed to connect the API REST with the database.
 mysql-connector-python == 8.4.0
