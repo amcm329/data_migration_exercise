@@ -3,14 +3,17 @@
    
    https://auth0.com/blog/developing-restful-apis-with-python-and-flask/
    https://www.tutorialspoint.com/how-to-show-all-the-tables-present-in-the-database-and-server-in-mysql-using-python
-   
-   
 """
 
 import os
+import logging
 import datetime
 import pandas as pd
+
+
+#https://pypi.org/project/pandavro/
 import pandavro as pdx
+
 import mysql.connector
 
 #To create the directory for saving backups.
@@ -19,11 +22,11 @@ from pathlib import Path
 #Note: request in Flask is no the same as requests. 
 from flask import Flask, jsonify, request 
 
-
+log_directory = "/home/logs/"
 backup_directory = "/home/backups/"
 
 inserts = {
-           "hired_employees": "INSERT INTO hired_employees(Id, Name, My_Datetime, Department_Id) VALUES (%s, %s, %s, %s)", 
+           "hired_employees": "INSERT INTO hired_employees(Id, Name, My_Datetime, Department_Id, Job_Id) VALUES (%s, %s, %s, %s, %s)", 
            "departments": "INSERT INTO departments(Id, Department) VALUES (%s, %s)", 
            "jobs": "INSERT INTO jobs(Id, Job) VALUES (%s, %s)", 
           }
@@ -36,8 +39,17 @@ config = {
           'port': '3306',
           'database': 'globant'
          }
+         
+#Logger for the exercise.          
+logger = logging.getLogger(__name__)
+
+#https://stackoverflow.com/questions/50981906/change-default-location-log-file-generated-by-logger-in-python
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%a, %d %b %Y %H:%M:%S', filename= f'{log_directory}database.log', filemode='w')         
+    
     
 app = Flask(__name__)
+
+
 
 """
    This secondary function allows us to obtain a timestamp in a string format. 
@@ -131,7 +143,10 @@ def restore_data(table_name,file_name):
         restore = pdx.read_avro(f'{backup_directory}{file_name}')
         connection = mysql.connector.connect(**config)
         cursor = connection.cursor(dictionary=True)
-     
+
+        #We remove all current information from the table
+        cursor.execute(f'TRUNCATE TABLE {table_name}')    
+        
         #Need SQLAlchemy for this: 
         #https://stackoverflow.com/questions/72684970/execution-failed-on-sql-select-name-from-sqlite-master-where-type-table-and-n
         #restore.to_sql(name=table_name, con=connection, if_exists='replace')
@@ -166,7 +181,7 @@ def restore_data(table_name,file_name):
 
 
 """
-   Index with my personal data
+   Index with my personal data.
 """
 @app.route('/')
 def index():
@@ -180,11 +195,78 @@ def index():
 
 
 """
-"""
-@app.route('/insert', methods=['GET', 'POST']   )
-def insert():
-    pass
+   The following is a method to INSERT a set of rows in a determined table.
+   
+   Parameters: 
+    table_name - the database to be backed up.
+    dataset - the information in list format. 
     
+   Returns: 
+    A dictionary with the following structure:
+      table - the table name.
+      status - HTTP status code 
+      message - a more particular message depending on the situations during the process. 
+      count - the number of rows that were inserted.       
+      mimetype - the document type.
+"""
+@app.route('/insert', methods=['GET', 'POST'])
+def insert():
+    final_json = {}
+    count = 0    
+    status = 200
+    message = "OK" 
+    result = ""
+  
+    #In this case, everything will be put in a try-catch block
+    #as it's the part that intends to send any insert error into a log.
+    try: 
+       result = request.get_json()
+       current_table = result.get("table_name")    
+       dataset = result.get("dataset")    
+   
+       connection = mysql.connector.connect(**config)
+       cursor = connection.cursor(dictionary=True)
+        
+       #We get the INSERT statement according to the table in question
+       query_insert = inserts[current_table]
+        
+       #We prepare the information to be inserted simultaneously.
+       pars = list(map(tuple, dataset))
+       
+       #We insert the information. 
+       cursor.executemany(query_insert, pars)
+        
+       #Save changes. 
+       connection.commit()
+
+       cursor.close()
+       connection.close()
+       
+       #Returning the final json
+       final_json = {
+                     'table': current_table,
+                     'status': status,
+                     'message': message, 
+                     'count': len(dataset),
+                     'mimetype': 'application/json'
+                    }
+
+    except Exception as e:
+          #This is the error corresponding to the logger in case something is not inserted. 
+          #As a particular design, if some error occurs then the whole process is aborted. 
+                    
+          logger.critical(e, exc_info=True) 
+
+          #Returning the error json
+          final_json = {
+                        'table': current_table,
+                        'status': 500,
+                        'message': str(e), 
+                        'count': -1,
+                        'mimetype': 'application/json'
+                       }
+    
+    return jsonify(final_json)
 
 """
    The following is a method to CREATE a backup (in avro format) 
