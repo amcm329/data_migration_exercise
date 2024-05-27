@@ -7,7 +7,7 @@
 The following project consists in the development of a system that creates a API REST and, by using its corresponding endpoints,
 it inserts, restores and creates backups to a MySQL database.
 
-As you can see, the SQL database used in this case was MySQL (5.7) and the tool used for API REST is Flask () 
+As you can see, the SQL database used in this case was MySQL (5.7) and the tool used for API REST is Flask (3.0.3) 
 
 The project's structure is the following: 
 
