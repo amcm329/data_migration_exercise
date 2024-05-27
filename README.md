@@ -52,8 +52,8 @@ Regarding the considerations mentioned for the project:
 
 Talking about security topics, I followed these statements: 
 
-* Security by obscurity - each one of the functionalities does exactly what it's needed, even the script simulation_interactions.py
+* Security by obscurity - each one of the functionalities does exactly what it's needed, even the script simulation_interactions.py contains this essence as it represents only the necessary actions that a user would carry out. 
 
-
+<br>
 
 
