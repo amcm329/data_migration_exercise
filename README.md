@@ -2,6 +2,8 @@
 ### Full Name: Aarón Martin Castillo Medina 
 ### Email: aaroncastillo329@gmail.com
 
+<br>
+
 The following project consists in the development of a system that creates a API REST and, by using its corresponding endpoints,
 it inserts, restores and creates backups to a MySQL database.
 
@@ -42,6 +44,14 @@ I briefly explain each one of these elements:
 
 Regarding the considerations mentioned for the project:
 
-* In the container, I included the files  
+* In the container, I included the source files in the container so the experience can be more real from the user side. By executing the code simulation_interactions.py, the user will be able to carry out the mentioned activities (insert, restore, backup).
+* During the creation of the container, I created the directories /home/backups/ and /home/sources/ which correspond to the destinations for the respective activities.
+* I created a file docker-compose.yml so I could launch these two services (MySQL and Flask).
+
+<br>
+
+Talking about security topics, I followed these statements: 
+
+
 
 
