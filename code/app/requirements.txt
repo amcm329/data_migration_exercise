@@ -5,7 +5,7 @@ hvac == 2.2.0
 Flask == 3.0.3
 
 #Library used for the insertion task.
-numpy = 1.26.4
+numpy == 1.26.4
 
 #Library needed to carry out the insertions in a more optimal way. 
 pandas == 2.2.2 
