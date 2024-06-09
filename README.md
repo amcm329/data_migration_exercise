@@ -76,4 +76,8 @@ There are many things to consider to harden this project, I mention the followin
 * Same as the previous one but using a vault server to store crucial information (paths, credentials), moreover, I tried to use a python version (hvac) but unfortunately, I ran out of time.
 <br>
 
+## SOURCES 
+https://jaimesendraberenguer.medium.com/aplicaci%C3%B3n-web-basada-en-flask-y-mysql-y-despliegue-con-docker-y-docker-compose-en-digital-ocean-4754a400d4e3
+https://www.linkedin.com/pulse/building-flask-application-mysql-database-using-docker-agarwal/
+https://avro.apache.org/docs/1.11.1/getting-started-python/
 
